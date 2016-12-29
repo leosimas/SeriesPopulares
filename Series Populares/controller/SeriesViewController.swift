@@ -51,20 +51,33 @@ class SeriesViewController : UICollectionViewController {
                 return
             }
             
-            self.series.append(contentsOf : seriesResponse!.results!)
-            
             if ( self.totalPages == nil ) {
                 self.totalPages = seriesResponse?.totalPages
             }
             self.currentPage = page
             
-            self.collectionView!.reloadData()
-        
-            if (page == 1) {
-                EZLoadingActivity.hide()
-            } else {
-                self.collectionView!.finishInfiniteScroll()
-            }
+            self.collectionView!.performBatchUpdates({ () -> Void in
+                // update collection view
+                let newSeries = seriesResponse!.results!
+                
+                var index = self.series.count
+                self.series.append(contentsOf : newSeries)
+                
+                var arrayIndexPaths = [IndexPath]()
+                for _ in newSeries {
+                    arrayIndexPaths.append( IndexPath(row: index, section: 0))
+                    index += 1
+                }
+                
+                self.collectionView!.insertItems(at: arrayIndexPaths)
+                
+            }, completion: { (finished) -> Void in
+                if (page == 1) {
+                    EZLoadingActivity.hide()
+                } else {
+                    self.collectionView!.finishInfiniteScroll()
+                }
+            })
             
         })
         

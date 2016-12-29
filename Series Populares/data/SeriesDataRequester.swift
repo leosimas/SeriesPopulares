@@ -31,7 +31,6 @@ class SeriesDataRequester {
             "page" : String(page)
         ]
         
-        
         Alamofire.request(url, parameters : parameters)
             .validate()
             .validate(contentType: ["application/json"])
@@ -40,7 +39,6 @@ class SeriesDataRequester {
                 if (response.result.isFailure) {
                     let error = response.result.error
                     print( "erro: \(error)" )
-                    //"Ocorreu um erro ao buscar as séries."
                     
                     var errorMsg : String?
                     /*
