@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct Colors {
+    
+    static let primary = "F49253"
+    
+}

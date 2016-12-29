@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class SerieViewCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var label: UILabel!
+    
+    var serie : Serie?
+    
+    func setSerie ( serie : Serie ) {
+        self.serie = serie
+        
+        let imageUrl = SeriesDataRequester.getPosterUrl(serie : serie)
+        let url = URL(string: imageUrl)!
+        
+        imageView.af_setImage(withURL: url)
+        label.text = serie.name
+
     }
 
 }

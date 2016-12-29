@@ -1,0 +1,29 @@
+PODS:
+  - Alamofire (4.0.1)
+  - AlamofireImage (3.1.0):
+    - Alamofire (~> 4.0)
+  - AlamofireObjectMapper (4.0.0):
+    - Alamofire (~> 4.0)
+    - ObjectMapper (~> 2.0)
+  - EZLoadingActivity (1.01)
+  - ObjectMapper (2.1.0)
+  - UIScrollView-InfiniteScroll (1.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - AlamofireImage (~> 3.1)
+  - AlamofireObjectMapper (~> 4.0)
+  - EZLoadingActivity
+  - UIScrollView-InfiniteScroll (~> 1.0.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
+  AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
+  EZLoadingActivity: edd7e387e5197b116ce2cccb3fd747ababc2a510
+  ObjectMapper: e5e0f8aef8590fc2ddcde7f27eddb255863ee6e9
+  UIScrollView-InfiniteScroll: d26885be71caca7485cdb37eab513a8f89036bb0
+
+PODFILE CHECKSUM: ababc802cbb417c7c5d837a0cbecde94db0a2402
+
+COCOAPODS: 1.1.0.rc.3
