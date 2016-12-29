@@ -22,7 +22,7 @@ class SerieViewCell: UICollectionViewCell {
         let imageUrl = SeriesDataRequester.getPosterUrl(serie : serie)
         let url = URL(string: imageUrl)!
         
-        imageView.af_setImage(withURL: url)
+        imageView.af_setImage(withURL: url, placeholderImage : #imageLiteral(resourceName: "placeholder"))
         label.text = serie.name
 
     }

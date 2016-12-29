@@ -18,7 +18,7 @@ class SeriesDataRequester {
     private init() {
     }
     
-    let API_KEY : String  = "1a4ca4de4639c5e847b5b15b2477dd81"
+    let API_KEY : String  = ""
     let BASE_URL : String = "https://api.themoviedb.org/3/"
     
     let ERROR_NO_CONNECTION = -1009
@@ -32,7 +32,6 @@ class SeriesDataRequester {
         ]
         
         
-        URLCache.shared.removeAllCachedResponses()
         Alamofire.request(url, parameters : parameters)
             .validate()
             .validate(contentType: ["application/json"])
