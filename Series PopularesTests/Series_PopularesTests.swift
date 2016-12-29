@@ -21,16 +21,32 @@ class Series_PopularesTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testAPIConfig() {
+        let apiKey = SeriesDataRequester.sharedInstance.API_KEY
+        XCTAssert( apiKey != "", "Falta configurar a API KEY" )
+        
+        let API_KEY_DEBUG = "1234"
+        XCTAssertFalse( apiKey == API_KEY_DEBUG, "Utilizando API KEY de debug, trocar pela key de producao" )
+        
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testAPICall() {
+        
+        let asyncExpectation = expectation(description: "testAPICall")
+        
+        SeriesDataRequester.sharedInstance.listPopular(page: 1, callback: {seriesResponse, errorMsg in
+            
+            XCTAssertNil(errorMsg, errorMsg!)
+            
+            XCTAssertTrue(seriesResponse != nil, "erro no response: SeriesResponse == nil")
+            
+            asyncExpectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 1, handler: { error in
+            XCTAssertNil(error, "erro no timeout")
+        })
+        
     }
     
 }

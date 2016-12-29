@@ -21,7 +21,7 @@ class SeriesDataRequester {
     let API_KEY : String  = ""
     let BASE_URL : String = "https://api.themoviedb.org/3/"
     
-    let ERROR_NO_CONNECTION = -1009
+    //let ERROR_NO_CONNECTION = -1009
     
     func listPopular( page : Int = 1, callback : @escaping (SeriesResponse?, String?) -> Void ) {
         let url = BASE_URL.appending("tv/popular")
