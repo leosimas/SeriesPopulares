@@ -11,6 +11,8 @@ import EZLoadingActivity
 
 class SeriesViewController : UICollectionViewController {
     
+    @IBOutlet weak var buttonRefresh: UIButton!
+    
     var currentPage : Int = 0
     var totalPages : Int?
     var series : [Serie] = []
@@ -31,6 +33,13 @@ class SeriesViewController : UICollectionViewController {
             self.requestNextPage()
         }
         
+        self.buttonRefresh.isHidden = true
+        
+    }
+    
+    @IBAction func onRefreshTouch(_ sender: UIButton) {
+        self.resetSeries()
+        self.requestNextPage()
     }
     
     private func requestNextPage() {
@@ -42,6 +51,10 @@ class SeriesViewController : UICollectionViewController {
         if (!SeriesDataRequester.sharedInstance.isConnected()) {
             self.collectionView!.finishInfiniteScroll()
             self.showAlert(msg: "Sem conexão com a internet. Verifique sua rede.")
+            
+            if ( page == 1 ) {
+                self.buttonRefresh.isHidden = false
+            }
             return
         }
         
@@ -52,7 +65,14 @@ class SeriesViewController : UICollectionViewController {
         }
         
         SeriesDataRequester.sharedInstance.listPopular(page: page, callback: {seriesResponse, errorMsg in
+            
             if ( errorMsg != nil ) {
+                if (page == 1) {
+                    EZLoadingActivity.hide()
+                    self.buttonRefresh.isHidden = false
+                } else {
+                    self.collectionView!.finishInfiniteScroll()
+                }
                 self.showAlert(msg : errorMsg!)
                 return
             }
@@ -79,6 +99,7 @@ class SeriesViewController : UICollectionViewController {
             }, completion: { (finished) -> Void in
                 if (page == 1) {
                     EZLoadingActivity.hide()
+                    self.buttonRefresh.isHidden = true
                 } else {
                     self.collectionView!.finishInfiniteScroll()
                 }
