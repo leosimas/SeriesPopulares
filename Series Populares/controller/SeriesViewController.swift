@@ -39,6 +39,12 @@ class SeriesViewController : UICollectionViewController {
             return
         }
         
+        if (!SeriesDataRequester.sharedInstance.isConnected()) {
+            self.collectionView!.finishInfiniteScroll()
+            self.showAlert(msg: "Sem conexão com a internet. Verifique sua rede.")
+            return
+        }
+        
         if (page == 1) {
             EZLoadingActivity.show("Carregando...", disableUI: true)
         } else {
@@ -57,7 +63,6 @@ class SeriesViewController : UICollectionViewController {
             self.currentPage = page
             
             self.collectionView!.performBatchUpdates({ () -> Void in
-                // update collection view
                 let newSeries = seriesResponse!.results!
                 
                 var index = self.series.count

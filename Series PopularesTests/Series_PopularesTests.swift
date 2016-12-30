@@ -25,7 +25,7 @@ class Series_PopularesTests: XCTestCase {
         let apiKey = SeriesDataRequester.sharedInstance.API_KEY
         XCTAssert( apiKey != "", "Falta configurar a API KEY" )
         
-        let API_KEY_DEBUG = "1234"
+        let API_KEY_DEBUG = "1234" // possivel api key de testes
         XCTAssertFalse( apiKey == API_KEY_DEBUG, "Utilizando API KEY de debug, trocar pela key de producao" )
         
     }
@@ -43,7 +43,7 @@ class Series_PopularesTests: XCTestCase {
             asyncExpectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 1, handler: { error in
+        self.waitForExpectations(timeout: 10, handler: { error in
             XCTAssertNil(error, "erro no timeout")
         })
         

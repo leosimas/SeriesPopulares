@@ -7,13 +7,15 @@ PODS:
     - ObjectMapper (~> 2.0)
   - EZLoadingActivity (1.01)
   - ObjectMapper (2.1.0)
+  - ReachabilitySwift (3)
   - UIScrollView-InfiniteScroll (1.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - AlamofireImage (~> 3.1)
   - AlamofireObjectMapper (~> 4.0)
-  - EZLoadingActivity
+  - EZLoadingActivity (~> 1.0)
+  - ReachabilitySwift (~> 3)
   - UIScrollView-InfiniteScroll (~> 1.0.0)
 
 SPEC CHECKSUMS:
@@ -22,8 +24,9 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
   EZLoadingActivity: edd7e387e5197b116ce2cccb3fd747ababc2a510
   ObjectMapper: e5e0f8aef8590fc2ddcde7f27eddb255863ee6e9
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   UIScrollView-InfiniteScroll: d26885be71caca7485cdb37eab513a8f89036bb0
 
-PODFILE CHECKSUM: ababc802cbb417c7c5d837a0cbecde94db0a2402
+PODFILE CHECKSUM: 063d5aa0b14eb1033e534058bb6056e30e8bbcf0
 
 COCOAPODS: 1.1.0.rc.3

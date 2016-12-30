@@ -10,7 +10,8 @@ target 'Series Populares' do
   pod 'AlamofireObjectMapper', '~> 4.0' # json -> objeto
   pod 'AlamofireImage', '~> 3.1' # download de imagens
   pod 'UIScrollView-InfiniteScroll', '~> 1.0.0' # scroll com loading
-  pod 'EZLoadingActivity' # loading dialog bacana
+  pod 'EZLoadingActivity', '~> 1.0' # loading dialog bacana
+  pod 'ReachabilitySwift', '~> 3' # status de rede
 
   target 'Series PopularesTests' do
     inherit! :search_paths

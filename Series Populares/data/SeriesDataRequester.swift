@@ -9,19 +9,24 @@
 import Foundation
 import Alamofire
 import AlamofireObjectMapper
-
+import ReachabilitySwift
 
 class SeriesDataRequester {
     
     static let sharedInstance = SeriesDataRequester()
     
     private init() {
+        self.reachability = Reachability()!
     }
+    
+    var reachability : Reachability
     
     let API_KEY : String  = ""
     let BASE_URL : String = "https://api.themoviedb.org/3/"
     
-    //let ERROR_NO_CONNECTION = -1009
+    func isConnected() -> Bool {
+        return self.reachability.isReachable
+    }
     
     func listPopular( page : Int = 1, callback : @escaping (SeriesResponse?, String?) -> Void ) {
         let url = BASE_URL.appending("tv/popular")
@@ -40,20 +45,7 @@ class SeriesDataRequester {
                     let error = response.result.error
                     print( "erro: \(error)" )
                     
-                    var errorMsg : String?
-                    /*
-                    let err = error as? NSURLError
-                    if (err != nil) {
-                        errorMsg = "Ocorreu um erro. Verifique sua conexão."
-                    } else {
-                        errorMsg = "Ocorreu um erro ao buscar as séries."
-                    }
-                    */
-                    
-                    // FIXME tratar > sem internet
-                    errorMsg = "Ocorreu um erro ao buscar as séries."
-                    
-                    callback(nil, errorMsg!)
+                    callback(nil, "Ocorreu um erro ao buscar as séries.")
                     return
                 }
                 
